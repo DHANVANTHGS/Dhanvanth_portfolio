@@ -1,0 +1,206 @@
+/* ===== ABOUT SECTION ===== */
+.about {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding-block: 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+.about__inner {
+  width: min(1300px, 92%);
+  margin-inline: auto;
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
+/* ── Left: Text ── */
+.about__left {
+  flex: 1;
+  padding-right: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.about__heading {
+  font-size: clamp(2.4rem, 4.5vw, 3.6rem);
+  font-weight: 800;
+  color: var(--white);
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  margin-bottom: 32px;
+  /* Subtle gradient on the heading text */
+  background: linear-gradient(135deg, #ffffff 40%, #c8b8d8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.about__bio {
+  font-size: clamp(0.95rem, 1.35vw, 1.05rem);
+  font-weight: 400;
+  line-height: 2;
+  color: rgba(215, 205, 232, 0.72);
+  margin-bottom: 16px;
+  max-width: 600px;
+  letter-spacing: 0.01em;
+}
+
+.about__bio strong {
+  color: rgba(240, 232, 252, 0.95);
+  font-weight: 600;
+}
+
+/* ── Works On ── */
+.about__works-title {
+  font-size: clamp(1.4rem, 2.2vw, 1.9rem);
+  font-weight: 700;
+  color: rgba(240, 232, 252, 0.92);
+  margin-top: 40px;
+  margin-bottom: 20px;
+  letter-spacing: -0.01em;
+}
+
+/* ── Cards Grid ── */
+.about__cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  max-width: 560px;
+}
+
+.about__card {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 20px;
+  border-radius: 50px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: none;
+  cursor: default;
+  border: 1.5px solid transparent;
+  transition:
+    transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.28s ease,
+    filter 0.28s ease,
+    border-color 0.28s ease;
+  user-select: none;
+}
+
+.about__card:hover {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.4);
+  filter: brightness(1.18);
+}
+
+.about__card-icon {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+/* Card colour variants — matching screenshot palette */
+.card--blue {
+  background: rgba(80, 120, 200, 0.18);
+  border-color: rgba(100, 149, 237, 0.45);
+  color: #a8c4f0;
+}
+.card--blue .about__card-icon { color: #7aaee8; }
+
+.card--purple {
+  background: rgba(130, 80, 180, 0.22);
+  border-color: rgba(160, 110, 210, 0.45);
+  color: #c8a8f0;
+}
+.card--purple .about__card-icon { color: #b88ee0; }
+
+.card--green {
+  background: rgba(60, 170, 100, 0.18);
+  border-color: rgba(80, 200, 120, 0.4);
+  color: #90dba8;
+}
+.card--green .about__card-icon { color: #70cb90; }
+
+.card--teal {
+  background: rgba(80, 160, 200, 0.18);
+  border-color: rgba(100, 190, 220, 0.4);
+  color: #a0d8f0;
+}
+.card--teal .about__card-icon { color: #80c8e8; }
+
+.card--cyan {
+  background: rgba(60, 180, 190, 0.18);
+  border-color: rgba(80, 200, 210, 0.38);
+  color: #90e0e8;
+}
+.card--cyan .about__card-icon { color: #70d0d8; }
+
+/* ── Right: Image ── */
+.about__img-wrap {
+  flex-shrink: 0;
+  width: 42%;
+  max-width: 460px;
+  height: 88vh;
+  position: relative;
+
+  /* Fade left edge into background seamlessly */
+  -webkit-mask-image: linear-gradient(
+    to left,
+    black 0%,
+    black 55%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to left,
+    black 0%,
+    black 55%,
+    transparent 100%
+  );
+}
+
+.about__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+  border-radius: 4px;
+  transform: scaleX(-1);
+}
+
+/* ── Scroll reveal ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible   { opacity: 1; transform: translateY(0); }
+.delay-1          { transition-delay: 0.12s; }
+.delay-2          { transition-delay: 0.24s; }
+.delay-3          { transition-delay: 0.36s; }
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .about__inner {
+    flex-direction: column-reverse;
+    gap: 40px;
+  }
+  .about__left {
+    padding-right: 0;
+    align-items: center;
+    text-align: center;
+  }
+  .about__bio { max-width: 100%; }
+  .about__cards { justify-content: center; }
+  .about__img-wrap {
+    width: 80%;
+    height: 50vh;
+    mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+  }
+}

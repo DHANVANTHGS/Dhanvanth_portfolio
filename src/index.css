@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Courier+Prime:wght@400;700&family=Roboto+Slab:wght@300;400;700&display=swap');
+
+/* ===== RESET ===== */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ===== CSS VARIABLES ===== */
+:root {
+  --bg-dark:       #0a0810;
+  --bg-mid:        #110e1a;
+  --purple-deep:   #2d1f45;
+  --purple-mid:    #5a3f7a;
+  --purple-light:  #9b7bb8;
+  --lavender:      #c8b8d8;
+  --white:         #f4f0f8;
+  --muted:         #9a90a8;
+  --accent:        #b09ccb;
+
+  --font: 'Inter', sans-serif;
+}
+
+/* ===== BASE ===== */
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--font);
+  background-color: var(--bg-dark);
+  color: var(--white);
+  overflow-x: hidden;
+}
+
+/* ===== SCROLLBAR ===== */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--bg-dark); }
+::-webkit-scrollbar-thumb {
+  background: var(--purple-mid);
+  border-radius: 4px;
+}
+
+/* ===== UTILITY ===== */
+.container {
+  width: min(1200px, 90%);
+  margin-inline: auto;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  font-family: var(--font);
+  border: none;
+  outline: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}

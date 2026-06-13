@@ -1,0 +1,208 @@
+/* ===== SKILLS SECTION ===== */
+.skills {
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-block: 60px;
+  overflow: hidden;
+}
+
+/* ── SKILLS.png — sits BEHIND everything ── */
+.skills__bg-img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: clamp(600px, 75vw, 980px); /* Slightly smaller to prevent overlaps on medium viewports */
+  object-fit: contain;
+  pointer-events: none;
+  user-select: none;
+  z-index: 0; /* lower than columns so text is never obscured by skill items */
+}
+
+/* ── Left / Right columns ── */
+.skills__col {
+  flex: 1;
+  /* Cap width so items never bleed over the center SKILLS text or the person */
+  max-width: 350px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  z-index: 4;
+  padding-inline: 20px;
+  align-self: center;
+}
+.skills__col--left  { align-items: flex-end;   padding-right: 24px; }
+.skills__col--right { align-items: flex-start;  padding-left:  24px; }
+
+/* ── Center image container ── */
+.skills__center {
+  flex-shrink: 0;
+  height: 88vh;
+  aspect-ratio: 2 / 3;
+  position: relative;
+  z-index: 2;
+  display: block;
+  /* grayscale B&W */
+  filter: grayscale(1) contrast(1.1) brightness(0.88);
+  /* fade at bottom */
+  -webkit-mask-image: linear-gradient(to top, transparent 0%, black 8%);
+  mask-image: linear-gradient(to top, transparent 0%, black 8%);
+}
+
+/* ── Platform (rectangle6) ── */
+.skills__platform {
+  position: absolute;
+  left: 30.7%;
+  bottom: 5.4%;
+  width: 41.0%;
+  height: 37.2%;
+  z-index: 1;
+  pointer-events: none;
+  object-fit: fill;
+  clip-path: polygon(0% 0%, 100% 0%, 100% 90.5%, 23% 93.5%, 3% 87%, 0% 87%);
+}
+
+.skills__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  position: relative;
+  z-index: 2;
+}
+
+/* ───────────────────────────────────────────
+   SKILL ITEMS
+   ─────────────────────────────────────────── */
+.skill-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 16px;
+  border-radius: 14px;
+  cursor: default;
+
+  /* stagger-in animation */
+  opacity: 0;
+  transition:
+    opacity 0.45s ease,
+    transform 0.45s ease,
+    background 0.25s ease,
+    box-shadow 0.25s ease,
+    scale 0.2s ease;
+}
+
+/* Left/Right initial transforms combining stagger and curve offsets */
+.skills__col--left .skill-item {
+  transform: translateX(calc(-28px + var(--curve-offset, 0px)));
+}
+.skills__col--left .skill-item.visible {
+  opacity: 1;
+  transform: translateX(var(--curve-offset, 0px));
+}
+
+.skills__col--right .skill-item {
+  transform: translateX(calc(28px + var(--curve-offset, 0px)));
+}
+.skills__col--right .skill-item.visible {
+  opacity: 1;
+  transform: translateX(var(--curve-offset, 0px));
+}
+
+/* ── Hover glow ── */
+.skill-item:hover {
+  background: rgba(255, 255, 255, 0.07);
+  box-shadow:
+    0 0 16px rgba(168, 130, 255, 0.28),
+    inset 0 0 1px rgba(255, 255, 255, 0.1);
+  scale: 1.07;
+  border-radius: 14px;
+}
+
+.skill-item:hover .skill-item__icon {
+  filter: drop-shadow(0 0 7px rgba(168, 130, 255, 0.65));
+  transform: scale(1.14);
+}
+
+/* ── Icon ── */
+.skill-item__icon {
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+  flex-shrink: 0;
+  transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+/* Wide wordmark icons (git, MongoDB) — let them breathe horizontally */
+.skill-item--wordmark .skill-item__icon {
+  width: auto;
+  max-width: 110px;
+  height: 44px;
+}
+
+/* Wazuh icon is dark navy on white bg — invert + mix-blend-mode screens out the white background to transparent */
+.skill-item--wazuh .skill-item__icon {
+  filter: invert(1);
+  mix-blend-mode: screen;
+  width: auto;
+  max-width: 140px;
+  height: 90px;
+}
+
+/* ── Label ── */
+.skill-item__label {
+  font-family: 'Inter', 'Outfit', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #e8e0ff;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  transition: color 0.2s ease;
+}
+
+.skill-item:hover .skill-item__label {
+  color: #ffffff;
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .skills {
+    flex-direction: column;
+    gap: 40px;
+    padding-block: 80px;
+  }
+  .skills__col {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    padding-inline: 16px;
+    max-width: 100%;
+  }
+  .skills__col--left  { align-items: center; }
+  .skills__col--right { align-items: center; }
+  .skills__center {
+    width: 70%;
+    max-width: 380px;
+    height: auto;
+    aspect-ratio: 2 / 3;
+    order: -1;
+  }
+  .skills__bg-img {
+    width: 95vw;
+  }
+  
+  /* Reset curve offsets and apply row translations */
+  .skills__col--left .skill-item,
+  .skills__col--right .skill-item {
+    transform: translateY(16px) !important;
+  }
+  .skills__col--left .skill-item.visible,
+  .skills__col--right .skill-item.visible {
+    transform: translateY(0) !important;
+  }
+}
