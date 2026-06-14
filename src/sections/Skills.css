@@ -168,10 +168,26 @@
 }
 
 /* ── Responsive ── */
+
+/* ---- Tablet (≤ 1024px) — tighten columns ---- */
+@media (max-width: 1024px) {
+  .skills__col {
+    max-width: 280px;
+    padding-inline: 10px;
+    gap: 14px;
+  }
+  .skills__col--left  { padding-right: 16px; }
+  .skills__col--right { padding-left:  16px; }
+  .skill-item__label {
+    font-size: 0.95rem;
+  }
+}
+
+/* ---- Phone / small tablet (≤ 900px) ---- */
 @media (max-width: 900px) {
   .skills {
     flex-direction: column;
-    gap: 40px;
+    gap: 32px;
     padding-block: 80px;
   }
   .skills__col {
@@ -179,24 +195,24 @@
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
     padding-inline: 16px;
     max-width: 100%;
   }
-  .skills__col--left  { align-items: center; }
-  .skills__col--right { align-items: center; }
+  .skills__col--left  { align-items: center; order: 1; }
+  .skills__col--right { align-items: center; order: 3; }
   .skills__center {
-    width: 70%;
-    max-width: 380px;
+    width: 65%;
+    max-width: 360px;
     height: auto;
     aspect-ratio: 2 / 3;
-    order: -1;
+    order: 2;
   }
   .skills__bg-img {
     width: 95vw;
   }
-  
-  /* Reset curve offsets and apply row translations */
+
+  /* Reset curve offsets — use vertical stagger instead */
   .skills__col--left .skill-item,
   .skills__col--right .skill-item {
     transform: translateY(16px) !important;
@@ -206,3 +222,72 @@
     transform: translateY(0) !important;
   }
 }
+
+/* ---- Phone (≤ 600px) ---- */
+@media (max-width: 600px) {
+  .skills {
+    gap: 20px;
+    padding-block: 60px;
+  }
+  .skills__center {
+    width: 72%;
+    max-width: 300px;
+  }
+  .skill-item {
+    padding: 7px 12px;
+    gap: 8px;
+    border-radius: 10px;
+  }
+  .skill-item__icon {
+    width: 36px;
+    height: 36px;
+  }
+  .skill-item--wordmark .skill-item__icon {
+    max-width: 88px;
+    height: 36px;
+  }
+  .skill-item--wazuh .skill-item__icon {
+    max-width: 110px;
+    height: 72px;
+  }
+  .skill-item__label {
+    font-size: 0.85rem;
+  }
+}
+
+/* ---- Small phone (≤ 480px) ---- */
+@media (max-width: 480px) {
+  .skills {
+    padding-block: 48px;
+    gap: 16px;
+  }
+  .skills__center {
+    width: 80%;
+    max-width: 260px;
+  }
+  .skill-item {
+    padding: 6px 10px;
+    gap: 6px;
+    border-radius: 8px;
+  }
+  .skill-item__icon {
+    width: 28px;
+    height: 28px;
+  }
+  .skill-item--wordmark .skill-item__icon {
+    max-width: 72px;
+    height: 28px;
+  }
+  .skill-item--wazuh .skill-item__icon {
+    max-width: 88px;
+    height: 56px;
+  }
+  .skill-item__label {
+    font-size: 0.78rem;
+  }
+  .skills__bg-img {
+    width: 110vw;
+    opacity: 0.5;
+  }
+}
+

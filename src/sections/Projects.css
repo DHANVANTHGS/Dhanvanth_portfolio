@@ -217,6 +217,8 @@
 }
 
 /* ===== RESPONSIVE ===== */
+
+/* ---- Tablet (≤ 900px) ---- */
 @media (max-width: 900px) {
   .projects__grid {
     grid-template-columns: 1fr;
@@ -236,3 +238,82 @@
     right: 28px;
   }
 }
+
+/* ---- Phone (≤ 600px) ---- */
+@media (max-width: 600px) {
+  .projects {
+    padding-block: 48px;
+  }
+  .projects__container {
+    gap: 24px;
+  }
+  .projects__heading {
+    font-size: clamp(1.8rem, 8vw, 2.6rem);
+  }
+  .project-card {
+    padding: 22px 20px;
+    min-height: unset;
+    border-radius: 8px;
+  }
+  .project-card__gh-link {
+    top: 22px;
+    right: 20px;
+  }
+  .project-card--light .project-card__title,
+  .project-card--dark .project-card__title {
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+    padding-right: 28px; /* avoid overlap with GH link */
+  }
+  .project-card--light .project-card__desc,
+  .project-card--dark .project-card__desc {
+    font-size: 0.88rem;
+    line-height: 1.55;
+    margin-bottom: 20px;
+    max-width: 100%;
+  }
+  .project-card__tags {
+    gap: 6px;
+    justify-content: flex-start;
+  }
+  .tag {
+    padding: 5px 10px;
+    font-size: 0.72rem;
+  }
+  .tag--icon-only {
+    padding: 5px;
+  }
+}
+
+/* ---- Small phone (≤ 480px) ---- */
+@media (max-width: 480px) {
+  .projects {
+    padding-block: 40px;
+  }
+  .projects__heading {
+    font-size: clamp(1.6rem, 9vw, 2.2rem);
+  }
+  .project-card {
+    padding: 18px 16px;
+  }
+  .project-card__gh-link {
+    top: 18px;
+    right: 16px;
+    width: 20px;
+    height: 20px;
+  }
+  .project-card--light .project-card__title,
+  .project-card--dark .project-card__title {
+    font-size: 1.2rem;
+  }
+  .project-card--light .project-card__desc,
+  .project-card--dark .project-card__desc {
+    font-size: 0.82rem;
+    margin-bottom: 16px;
+  }
+  .tag {
+    padding: 4px 8px;
+    font-size: 0.68rem;
+  }
+}
+
